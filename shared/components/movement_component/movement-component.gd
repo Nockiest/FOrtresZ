@@ -1,14 +1,32 @@
-class_name momvement_component
+class_name MomvementComponent
 extends Node2D
 
-
- 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var current_position_tracker: PositionTracker
 
 
-func process_movement(  to):
-	if $MovementValidator.validate_move($GridPositionTracker.get_grid_position(), to):
+func process_movement(to):
+	print("recieved movement to",current_position_tracker.get_grid_position() ,  to, $MovementValidator.validate_move(current_position_tracker.get_grid_position(), to))
+	if $MovementValidator.validate_move(current_position_tracker.get_grid_position(), to):
 		print("move would be valid")
+#		move_entity_to_new_cell_container(to)
+	owner.get_parent().get_parent().get_parent().move_entity_to_validated_position(to, owner)
+
+#func move_entity_to_new_cell_container(new_entity_container_coors: Vector2i):
+#	# this function processes already validated moves
+#	if new_entity_container_coors == owner.MovementComponent:
+#		printerr("you want to move to the same position as before")
+#		return
+#	# Get the current parent
+#	var current_parent = owner.get_parent()
+#	var tiles = get_tree().get_nodes_in_group("tiles")
+#	# Check if the new parent is valid and different from the current parent
+#	for tile in tiles:
+#		if tile.position_tracker.get_grid_position() == new_entity_container_coors:
+#			print("found the correct tile ",tile.position_tracker.get_grid_position() , tile.position_tracker.get_grid_position() == new_entity_container_coors)
+#			owner.get_parent().remove_child_node(self)
+#			tile.get_node("EntityContainer").add_child_node(owner)
+#
+#		# Remove from current parent
+#	current_position_tracker.set_grid_position(new_entity_container_coors)
+		
+ 

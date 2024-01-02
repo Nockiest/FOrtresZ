@@ -12,10 +12,12 @@ func validate_move(from: Vector2i, to: Vector2i) -> bool:
 
 	# Check if movement is within the valid range
 	if movement_distance > valid_max_movement_range:
+#		print_debug(1)
 		return false
 
 	# Check if the movement matches any valid movement pattern
 	for pattern in valid_movement_patterns:
+#		print_debug(2)
 		if movement_vector == pattern:
 			return true
 
@@ -32,6 +34,7 @@ func validate_move(from: Vector2i, to: Vector2i) -> bool:
 		direction += "down"
 
 	# Check if the direction is valid
+#	print_debug(direction in valid_directions)
 	return direction in valid_directions
 func _ready() -> void:
 	validate_move(Vector2i(15,15), Vector2i(14,14))

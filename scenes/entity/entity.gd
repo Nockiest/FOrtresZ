@@ -1,7 +1,10 @@
 class_name Entity
 extends Area2D
 
-@export var StateMachine: StateMachine
+@export var stateMachine: StateMachine
+@export var sovementComponent: MomvementComponent
+@export var positionTracker: PositionTracker
+@export var healthComponent: HealthComponent
 # Assuming Globals.tile_size is a Vector2 representing the desired size
 var desired_size: Vector2 = Globals.tile_size
 var is_hovered: bool
@@ -24,7 +27,7 @@ func _ready() -> void:
 	else:
 		print_debug("CollisionShape2D or its shape is not set")
 
-	StateMachine.init()
+	stateMachine.init()
 
 func _on_mouse_entered() -> void:
 	is_hovered = true

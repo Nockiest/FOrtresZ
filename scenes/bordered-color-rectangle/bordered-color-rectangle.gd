@@ -6,7 +6,7 @@ extends Control
 var border_visible: bool = true  # Track the visibility of the border
 
 func _ready() -> void:
-	set_size(rectangle_size)
+	resize(rectangle_size)
 
 func resize(new_size:Vector2i) -> void:
 	# Set the size of the outer rectangle

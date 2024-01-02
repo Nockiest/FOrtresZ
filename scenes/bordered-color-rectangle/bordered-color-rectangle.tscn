@@ -11,7 +11,7 @@ script = ExtResource("1_ijf68")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color(0.227451, 0.196078, 0.121569, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Fill" type="ColorRect" parent="."]
 layout_mode = 0

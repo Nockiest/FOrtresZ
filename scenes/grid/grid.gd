@@ -2,13 +2,12 @@ class_name Grid
 extends Node2D
 
  
-var gap_size = 0 # Gap size between rows
+var gap_size = 2 # Gap size between rows
 var grid = []
 
 func _ready():
 	initialize_grid()
-#	place_entities_randomly()
-
+ 
 func initialize_grid():
 	for x in range(Globals.grid_size.x):
 		var row = []
@@ -19,21 +18,9 @@ func initialize_grid():
 
 func create_tile(x, y):
 	var tile = Globals.tile_scene.instantiate() as Area2D
-	tile.position = Vector2(x * Globals.tile_size.x, (y * Globals.tile_size.y) + (y * gap_size))
+	tile.position = Vector2(x * Globals.tile_size.x  + (x * gap_size), (y * Globals.tile_size.y) + (y * gap_size))
 	tile.get_node('GridPositionTracker').set_grid_position(Vector2i(x, y))
-
-#	var bordered_color_rect_size = Vector2i(Globals.tile_size.x - 1, Globals.tile_size.y - 1)
-#	tile.get_node('BorderedColorRect').resize(bordered_color_rect_size)
-#
-#	# Adjust the collision shape to match the size of BorderedColorRect
-#	var collision_shape = tile.get_node('CollisionShape2D') as CollisionShape2D
-#	if collision_shape:
-#		var shape = RectangleShape2D.new()
-#		shape.extents = Globals.tile_size / 2.0  # Extents are half the size of the rectangle
-#		collision_shape.shape = shape
-#	else:
-#		print_debug("CollisionShape2D not found in the tile scene")
-
+ 
 	add_child(tile)
 	tile.connect("tile_left_clicked",  _on_tile_left_clicked )
 	return tile
@@ -44,5 +31,24 @@ func _on_tile_left_clicked(tile_position):
 	else:
 		Globals.selected_tile_coors = tile_position
 
+func move_entity_to_validated_position(to_entity_container_coors: Vector2i, entity: Entity)-> void:
+	# this function processes already validated moves
+	print(entity,entity.positionTracker)
+	if to_entity_container_coors == entity.positionTracker.get_grid_position():
+		printerr("you want to move to the same position as before")
+		return
+	# Get the current parent
+	var current_parent = owner.get_parent()
+	var tiles = get_tree().get_nodes_in_group("tiles")
+	# Check if the new parent is valid and different from the current parent
+	for tile in tiles:
+		if tile.position_tracker.get_grid_position() == to_entity_container_coors:
+			print("found the correct tile ",entity.owner, entity.get_parent(), entity)
+			entity.get_parent().remove_child_node(entity)
+			tile.get_node("EntityContainer").add_child_node(entity)
+			entity.positionTracker.set_grid_position(to_entity_container_coors)
+#			entity.owner.remove_child_node(entity)
+		
+		# Remove from current parent
 
  
