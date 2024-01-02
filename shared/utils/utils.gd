@@ -29,11 +29,11 @@ func square_to_packed_polygon(col_shape: CollisionShape2D) -> Polygon2D:
  
 ## you have to put this variable wheter you want to put the z_indexes
 var nodes_list = []
-func get_z_indexes(node,nodes_list):
+func get_z_indexes(node,nodes_list_arg):
 	if node is CanvasItem:
-		nodes_list.append([node, node.z_index])
+		nodes_list_arg.append([node, node.z_index])
 	for child in node.get_children():
-		get_z_indexes(child,nodes_list)
+		get_z_indexes(child,nodes_list_arg)
 func sort_by_z_index_desc(a, b):
 	return a[1] < b[1]
 	

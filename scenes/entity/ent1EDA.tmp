@@ -10,9 +10,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xklo8"]
 size = Vector2(129, 129)
 
-[node name="entity" type="Area2D" node_paths=PackedStringArray("StateMachine")]
+[node name="entity" type="Area2D"]
 script = ExtResource("1_ocgw1")
-StateMachine = NodePath("State_Machine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fu7wo")
@@ -25,7 +24,6 @@ shape = SubResource("RectangleShape2D_xklo8")
 
 [node name="State_Machine" type="Node" parent="."]
 script = ExtResource("4_ar34p")
-initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="State_Machine"]
 script = ExtResource("5_fnalx")

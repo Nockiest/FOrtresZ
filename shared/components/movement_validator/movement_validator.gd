@@ -1,5 +1,5 @@
 extends Node2D
-
+# also check that the move lies within the grid
 # Define the valid directions, movement patterns, and max movement range
 @export var valid_directions = ['left', 'right', 'down', 'up', 'up-left', 'up-right', 'down-left', 'down-right']
 @export var valid_movement_patterns: Array[Vector2i]  # Define the array with valid vectors

@@ -1,4 +1,4 @@
-class_name PositionComponent
+class_name PositionTracker
 extends Node 
 
 var gridPosition: Vector2i

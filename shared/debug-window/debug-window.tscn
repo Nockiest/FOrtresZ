@@ -25,3 +25,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 [node name="MousePosition" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="SelectedEntity" type="Label" parent="VBoxContainer"]
+layout_mode = 2

@@ -8,12 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fotma"]
 size = Vector2(40, 40)
 
-[node name="tile" type="Area2D"]
+[node name="tile" type="Area2D" node_paths=PackedStringArray("position_tracker")]
 script = ExtResource("1_g44cj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_fotma")
+position_tracker = NodePath("GridPositionTracker")
 
 [node name="BorderedColorRect" parent="." instance=ExtResource("4_s753q")]
 
@@ -21,5 +18,9 @@ shape = SubResource("RectangleShape2D_fotma")
 z_index = 1
 
 [node name="GridPositionTracker" parent="." instance=ExtResource("2_5csx2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_fotma")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
