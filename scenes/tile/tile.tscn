@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0dh1bj2qrdik"]
+
+[ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_g44cj"]
+[ext_resource type="PackedScene" uid="uid://3u66hjuby3o6" path="res://shared/components/grid-position-tracker/grid-position-tracker.tscn" id="2_5csx2"]
+[ext_resource type="PackedScene" uid="uid://cekbll0jp5ddf" path="res://shared/components/entity-container/object-container.tscn" id="2_th8uv"]
+[ext_resource type="PackedScene" uid="uid://3mjla4smedx2" path="res://scenes/bordered-color-rectangle/bordered-color-rectangle.tscn" id="4_s753q"]
+
+[node name="tile" type="Node2D"]
+script = ExtResource("1_g44cj")
+
+[node name="entityContainer" parent="." instance=ExtResource("2_th8uv")]
+
+[node name="GridPositionTracker" parent="." instance=ExtResource("2_5csx2")]
+
+[node name="BorderedColorRect" parent="." instance=ExtResource("4_s753q")]
