@@ -4,7 +4,7 @@ extends Node
 var gridPosition: Vector2i
  
  
-func set_position(newPosition):
+func set_grid_position(newPosition):
 	gridPosition = newPosition
-func get_position():
+func get_grid_position():
 	return gridPosition

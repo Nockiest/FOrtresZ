@@ -20,7 +20,7 @@ func initialize_grid():
 func create_tile(x, y):
 	var tile = Globals.tile_scene.instantiate() as Area2D
 	tile.position = Vector2(x * Globals.tile_size.x, (y * Globals.tile_size.y) + (y * gap_size))
-	tile.get_node('GridPositionTracker').set_position(Vector2i(x, y))
+	tile.get_node('GridPositionTracker').set_grid_position(Vector2i(x, y))
 	tile.get_node('BorderedColorRect').resize(Vector2i(Globals.tile_size.x - 1, Globals.tile_size.y - 1))
 	add_child(tile)
 	tile.connect("tile_left_clicked",  _on_tile_left_clicked )

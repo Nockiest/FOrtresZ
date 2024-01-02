@@ -17,6 +17,8 @@ func _ready() -> void:
 		$Sprite2D.scale = scale_factor
 	else:
 		print_debug("Sprite texture is not set or has zero size")
+		
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
  
