@@ -4,20 +4,20 @@ extends State
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
-	print("enterinig sselected state",  $"../../GridPositionTracker".get_grid_position())
 #	owner.get_node("Sprite2D").opacity = 0.5
 	owner.scale = Vector2(1.1, 1.1) 
 	Globals.selected_entity = owner
 	
 func exit():
-	print("exiting sselected state")
+ 
 	Globals.selected_entity = null
 	owner.scale = Vector2(1.0, 1.0) 
 	
-	
+# there is a potential for a bug causeed by using the selected tile and not the tile the entity stands on
 func update(delta):
 	if (Input.is_action_just_pressed("left_mouse_click") ):
-		$"../../MovementComponent".process_movement(Globals.hovered_tile_coors)
+		print_debug(Globals.selected_tile_coors, Globals.hovered_tile_coors) 
+		$"../../MovementComponent".process_movement(owner.get_parent().get_parent().get_node("GridPositionTracker").gridPosition, Globals.hovered_tile_coors)
 		state_machine.transition_to("Idle")
 	elif   Globals.selected_entity != owner:
 		state_machine.transition_to("Idle")

@@ -1,15 +1,22 @@
 class_name MomvementComponent
-extends Node2D
+extends Node
 
-@export var current_position_tracker: PositionTracker
+@export var valid_directions = ['left', 'right', 'down', 'up', 'up-left', 'up-right', 'down-left', 'down-right']
+@export var valid_movement_patterns: Array[Vector2i]  # Define the array with valid vectors
+@export var valid_max_movement_range: float = 1  # Define the maximum movement range
 
-
-func process_movement(to):
-	print("recieved movement to",current_position_tracker.get_grid_position() ,  to, $MovementValidator.validate_move(current_position_tracker.get_grid_position(), to))
-	if $MovementValidator.validate_move(current_position_tracker.get_grid_position(), to):
-		print("move would be valid")
-#		move_entity_to_new_cell_container(to)
-	owner.get_parent().get_parent().get_parent().move_entity_to_validated_position(to, owner)
+func process_movement(from, to):
+ 
+	
+	var validation_input_data = {
+		"valid_directions": valid_directions,
+		"valid_movement_patterns": valid_movement_patterns,
+		"valid_max_movement_range": valid_max_movement_range
+	}
+	print("Received movement to", from, to, $MovementValidator.validate_move(from, to, validation_input_data))
+	if $MovementValidator.validate_move(from, to, validation_input_data):
+		print("Move would be valid")
+		owner.get_parent().get_parent().get_parent().move_entity_to_validated_position(from, to, owner)
 
 #func move_entity_to_new_cell_container(new_entity_container_coors: Vector2i):
 #	# this function processes already validated moves

@@ -31,10 +31,10 @@ func _on_tile_left_clicked(tile_position):
 	else:
 		Globals.selected_tile_coors = tile_position
 
-func move_entity_to_validated_position(to_entity_container_coors: Vector2i, entity: Entity)-> void:
+func move_entity_to_validated_position(from_container_coors, to_container_coors: Vector2i, entity: Entity)-> void:
 	# this function processes already validated moves
 	print(entity,entity.positionTracker)
-	if to_entity_container_coors == entity.positionTracker.get_grid_position():
+	if to_container_coors == from_container_coors:
 		printerr("you want to move to the same position as before")
 		return
 	# Get the current parent
@@ -42,11 +42,11 @@ func move_entity_to_validated_position(to_entity_container_coors: Vector2i, enti
 	var tiles = get_tree().get_nodes_in_group("tiles")
 	# Check if the new parent is valid and different from the current parent
 	for tile in tiles:
-		if tile.position_tracker.get_grid_position() == to_entity_container_coors:
+		if tile.position_tracker.get_grid_position() == to_container_coors:
 			print("found the correct tile ",entity.owner, entity.get_parent(), entity)
 			entity.get_parent().remove_child_node(entity)
 			tile.get_node("EntityContainer").add_child_node(entity)
-			entity.positionTracker.set_grid_position(to_entity_container_coors)
+ 
 #			entity.owner.remove_child_node(entity)
 		
 		# Remove from current parent
