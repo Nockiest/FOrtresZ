@@ -17,7 +17,7 @@ func exit():
 	
 func update(delta):
 	if (Input.is_action_just_pressed("left_mouse_click") ):
-		$"../../movement-component".process_movement(Globals.hovered_tile_coors)
+		$"../../MovementComponent".process_movement(Globals.hovered_tile_coors)
 		state_machine.transition_to("Idle")
 	elif   Globals.selected_entity != owner:
 		state_machine.transition_to("Idle")

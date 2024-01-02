@@ -5,6 +5,7 @@ extends Area2D
 @export var sovementComponent: MomvementComponent
 @export var positionTracker: PositionTracker
 @export var healthComponent: HealthComponent
+@export var deathComponent: DeathComponent
 # Assuming Globals.tile_size is a Vector2 representing the desired size
 var desired_size: Vector2 = Globals.tile_size
 var is_hovered: bool
@@ -28,8 +29,16 @@ func _ready() -> void:
 		print_debug("CollisionShape2D or its shape is not set")
 
 	stateMachine.init()
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("left_mouse_click") :
+		healthComponent.take_hit(1)
 
 func _on_mouse_entered() -> void:
 	is_hovered = true
 func _on_mouse_exited() -> void:
 	is_hovered = false
+
+
+func _on_health_component_health_ran_out() -> void:
+	print_debug("entity is dead ", self)

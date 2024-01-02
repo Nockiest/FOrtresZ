@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cngkyyaado21q"]
+[gd_scene load_steps=11 format=3 uid="uid://cngkyyaado21q"]
 
 [ext_resource type="Script" path="res://scenes/entity/entity.gd" id="1_ocgw1"]
-[ext_resource type="PackedScene" uid="uid://bdcu3imq3e6t1" path="res://shared/components/hp-component/hp-component.tscn" id="2_7lap2"]
 [ext_resource type="Texture2D" uid="uid://dusv1wgiw6h8" path="res://assets/images/icon.svg" id="2_fu7wo"]
 [ext_resource type="PackedScene" uid="uid://djape1yn3meth" path="res://shared/components/movement_component/movement-component.tscn" id="2_uoay6"]
+[ext_resource type="PackedScene" uid="uid://bnkur2kld0tc4" path="res://shared/components/death-component/death-component.tscn" id="2_wd22j"]
 [ext_resource type="PackedScene" uid="uid://3u66hjuby3o6" path="res://shared/components/grid-position-tracker/grid-position-tracker.tscn" id="3_it771"]
+[ext_resource type="PackedScene" uid="uid://bdcu3imq3e6t1" path="res://shared/components/health-component/health-component.tscn" id="3_lp4s4"]
 [ext_resource type="Script" path="res://scenes/entity/entity-state-machine.gd" id="4_ar34p"]
 [ext_resource type="Script" path="res://scenes/entity/entity-idle-state.gd" id="5_fnalx"]
 [ext_resource type="Script" path="res://scenes/entity/entity-selected-state.gd" id="6_wr2p7"]
@@ -12,15 +13,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xklo8"]
 size = Vector2(129, 129)
 
-[node name="entity" type="Area2D" groups=["entity", "game_object"]]
+[node name="entity" type="Area2D" node_paths=PackedStringArray("stateMachine", "sovementComponent", "positionTracker", "healthComponent") groups=["entity", "game_object"]]
 script = ExtResource("1_ocgw1")
-positionTracker = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://shared/components/grid-position-tracker/grid-position-tracker.gd"))
+stateMachine = NodePath("State_Machine")
+sovementComponent = NodePath("MovementComponent")
+positionTracker = NodePath("GridPositionTracker")
+healthComponent = NodePath("HealthComponent")
 
+[node name="DeathComponent" parent="." instance=ExtResource("2_wd22j")]
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_7lap2")]
-
-[node name="movement-component" parent="." node_paths=PackedStringArray("current_position_tracker") instance=ExtResource("2_uoay6")]
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("current_position_tracker") instance=ExtResource("2_uoay6")]
 current_position_tracker = NodePath("../GridPositionTracker")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_lp4s4")]
+max_hp = 2
+start_hp = 2
+max_shields = null
+start_shields = null
+regeneration_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fu7wo")
@@ -43,3 +53,4 @@ script = ExtResource("6_wr2p7")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="health_ran_out" from="HealthComponent" to="." method="_on_health_component_health_ran_out"]
