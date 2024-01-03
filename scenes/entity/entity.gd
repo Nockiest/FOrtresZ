@@ -3,7 +3,6 @@ extends Area2D
 
 @export var stateMachine: StateMachine
 @export var sovementComponent: MomvementComponent
-@export var positionTracker: PositionTracker
 @export var healthComponent: HealthComponent
 @export var deathComponent: DeathComponent
 @export var weaponComponent: RangedWeapon
@@ -31,10 +30,10 @@ func _ready() -> void:
 
 	stateMachine.init()
 	
-#func _process(delta: float) -> void:
-#	if Input.is_action_just_pressed("left_mouse_click") :
-##		healthComponent.take_hit(1)
-#		weaponComponent.attack()
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("left_mouse_click") :
+#		healthComponent.take_hit(1)
+		weaponComponent.attack()
 
 func _on_mouse_entered() -> void:
 	is_hovered = true

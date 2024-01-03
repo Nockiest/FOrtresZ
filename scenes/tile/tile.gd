@@ -24,14 +24,13 @@ func resize(size:Vector2i):
 	shape.extents = size / 2.0  # Extents are half the size of the rectangle
 	$CollisionShape2D.shape = shape
 	var center = Utils.get_collision_shape_center(self)
-	$EntityContainer.position = size / Vector2i(2,2) 
+	$ObjectContainer.position = size / Vector2i(2,2) 
 
 
 func add_entity_to_tile( ):
 	if randf() <= 0.2:  # 20% chance
-		print("adding an entity")
 		var entity = Globals.entity_scene.instantiate() as Node2D
-		$EntityContainer.add_child_node(entity)
+		$ObjectContainer.add_child_node(entity)
 
 func _on_entity_container_entities_changed(_new_size) -> void:
 	$BorderedColorRect/Fill.color = Color('red')

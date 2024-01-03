@@ -45,7 +45,7 @@ func move_entity_to_validated_position(from_container_coors, to_container_coors:
 		if tile.position_tracker.get_grid_position() == to_container_coors:
 #			print("found the correct tile ",entity.owner, entity.get_parent(), entity)
 			entity.get_parent().remove_child_node(entity)
-			tile.get_node("EntityContainer").add_child_node(entity)
+			tile.get_node("EntityContainer").recieve_child_node(entity)
  
 #			entity.owner.remove_child_node(entity)
 		

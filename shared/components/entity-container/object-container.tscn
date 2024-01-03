@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cekbll0jp5ddf"]
+[gd_scene load_steps=3 format=3 uid="uid://cekbll0jp5ddf"]
 
-[ext_resource type="Script" path="res://shared/components/entity-container/entity-container.gd" id="1_empy1"]
+[ext_resource type="Script" path="res://shared/components/entity-container/object-container-manager.gd" id="1_4fxmv"]
+[ext_resource type="Script" path="res://shared/components/entity-container/object-container.gd" id="1_empy1"]
 
-[node name="entityContainer" type="Node2D"]
+[node name="ObjectContainerManager" type="Node2D" node_paths=PackedStringArray("entity_container", "structure_container", "projectile_container")]
+script = ExtResource("1_4fxmv")
+entity_container = NodePath("EntityContainer")
+structure_container = NodePath("StructureContainer")
+projectile_container = NodePath("ProjectileContainer")
+
+[node name="EntityContainer" type="Node" parent="."]
 script = ExtResource("1_empy1")
+
+[node name="StructureContainer" type="Node" parent="."]
+script = ExtResource("1_empy1")
+allowed_object_type = "Structure"
+
+[node name="ProjectileContainer" type="Node" parent="."]
+script = ExtResource("1_empy1")
+allowed_object_type = "Projectile"

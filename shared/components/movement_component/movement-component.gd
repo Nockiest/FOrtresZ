@@ -31,7 +31,7 @@ func process_movement(from, to):
 #		if tile.position_tracker.get_grid_position() == new_entity_container_coors:
 #			print("found the correct tile ",tile.position_tracker.get_grid_position() , tile.position_tracker.get_grid_position() == new_entity_container_coors)
 #			owner.get_parent().remove_child_node(self)
-#			tile.get_node("EntityContainer").add_child_node(owner)
+#			tile.get_node("EntityContainer").recieve_child_node(owner)
 #
 #		# Remove from current parent
 #	current_position_tracker.set_grid_position(new_entity_container_coors)
