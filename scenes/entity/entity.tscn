@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cngkyyaado21q"]
+[gd_scene load_steps=11 format=3 uid="uid://cngkyyaado21q"]
 
 [ext_resource type="Script" path="res://scenes/entity/entity.gd" id="1_ocgw1"]
 [ext_resource type="Texture2D" uid="uid://dusv1wgiw6h8" path="res://assets/images/icon.svg" id="2_fu7wo"]
+[ext_resource type="PackedScene" uid="uid://bqygy5ngua5pb" path="res://shared/components/ranged-weapon-component/ranged-weapon-comp.tscn" id="2_qjmeb"]
 [ext_resource type="PackedScene" uid="uid://djape1yn3meth" path="res://shared/components/movement_component/movement-component.tscn" id="2_uoay6"]
 [ext_resource type="PackedScene" uid="uid://bnkur2kld0tc4" path="res://shared/components/death-component/death-component.tscn" id="2_wd22j"]
 [ext_resource type="PackedScene" uid="uid://bdcu3imq3e6t1" path="res://shared/components/health-component/health-component.tscn" id="3_lp4s4"]
@@ -12,12 +13,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xklo8"]
 size = Vector2(129, 129)
 
-[node name="entity" type="Area2D" node_paths=PackedStringArray("stateMachine", "sovementComponent", "healthComponent", "deathComponent") groups=["entity", "game_object"]]
+[node name="entity" type="Area2D" node_paths=PackedStringArray("stateMachine", "sovementComponent", "healthComponent", "deathComponent", "weaponComponent") groups=["entity", "game_object"]]
 script = ExtResource("1_ocgw1")
 stateMachine = NodePath("State_Machine")
 sovementComponent = NodePath("MovementComponent")
 healthComponent = NodePath("HealthComponent")
 deathComponent = NodePath("DeathComponent")
+weaponComponent = NodePath("Weapon")
+
+[node name="Weapon" parent="." instance=ExtResource("2_qjmeb")]
 
 [node name="DeathComponent" parent="." instance=ExtResource("2_wd22j")]
 

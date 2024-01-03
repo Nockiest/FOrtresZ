@@ -16,11 +16,14 @@ func exit():
 # there is a potential for a bug causeed by using the selected tile and not the tile the entity stands on
 func update(delta):
 	if (Input.is_action_just_pressed("left_mouse_click") ):
-		print_debug(Globals.selected_tile_coors, Globals.hovered_tile_coors) 
+#		print_debug(Globals.selected_tile_coors, Globals.hovered_tile_coors) 
 		$"../../MovementComponent".process_movement(owner.get_parent().get_parent().get_node("GridPositionTracker").gridPosition, Globals.hovered_tile_coors)
 		state_machine.transition_to("Idle")
 	elif   Globals.selected_entity != owner:
 		state_machine.transition_to("Idle")
+	elif Input.is_action_just_pressed("right_mouse_click") :
+#		healthComponent.take_hit(1)
+		$"../../Weapon".attack()
 	
 
 

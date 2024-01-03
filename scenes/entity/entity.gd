@@ -6,9 +6,10 @@ extends Area2D
 @export var positionTracker: PositionTracker
 @export var healthComponent: HealthComponent
 @export var deathComponent: DeathComponent
+@export var weaponComponent: RangedWeapon
  
 var desired_size: Vector2 = Globals.tile_size
-var is_hovered: bool
+var is_hovered: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +33,8 @@ func _ready() -> void:
 	
 #func _process(delta: float) -> void:
 #	if Input.is_action_just_pressed("left_mouse_click") :
-#		healthComponent.take_hit(1)
+##		healthComponent.take_hit(1)
+#		weaponComponent.attack()
 
 func _on_mouse_entered() -> void:
 	is_hovered = true

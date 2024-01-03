@@ -6,7 +6,7 @@ signal entities_changed(entities)
 
 # Function to add a child node
 func add_child_node(child_node):
-	print("adding node ", child_node, get_child_count() < max_entities)
+#	print("adding node ", child_node, get_child_count() < max_entities)
 	if get_child_count() < max_entities:
 		add_child(child_node)
 		emit_signal("entities_changed", get_children())
@@ -15,8 +15,8 @@ func add_child_node(child_node):
 
 # Function to remove a child node
 func remove_child_node(child_node):
-	if true:
-		print("removing node ", child_node)
+	if child_node in get_children():
+#		print("removing node ", child_node)
 		remove_child(child_node)
 		emit_signal("entities_changed", get_children())
 	else:
