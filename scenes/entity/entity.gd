@@ -12,7 +12,7 @@ var is_hovered: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$'../../GridPositionTracker'.set_grid_position(get_parent().get_parent().position_tracker.get_grid_position())
+#	$'../../../GridPositionTracker'.set_grid_position(get_parent().get_parent().position_tracker.get_grid_position())
 
 	var scale_factor: Vector2 = Vector2.ZERO
 	if $Sprite2D.texture and $Sprite2D.texture.get_size() != Vector2.ZERO:
