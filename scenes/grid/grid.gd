@@ -1,7 +1,6 @@
 class_name Grid
 extends Node2D
 
- 
 var grid = []
 
 func _ready():
@@ -38,7 +37,7 @@ func move_entity_to_validated_position(from_container_coors, to_container_coors:
 		printerr("you want to move to the same position as before")
 		return
 	# Get the current parent
-	var current_parent = owner.get_parent()
+ 
 	var tiles = get_tree().get_nodes_in_group("tiles")
 	# Check if the new parent is valid and different from the current parent
 	for tile in tiles:

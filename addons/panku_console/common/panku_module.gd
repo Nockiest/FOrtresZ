@@ -19,7 +19,7 @@ func quit_module():
 		_opt._loaded = false
 
 # called at the start of each physics frame
-func update_module(delta:float):
+func update_module(_delta:float):
 	pass
 
 func save_module_data(key:String, value:Variant):

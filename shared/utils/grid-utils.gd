@@ -72,4 +72,15 @@ func get_movement_direction(from, to) -> DirectionList.Direction:
 			print("x8")
 	return direction
 
+# Function to find the tile node using coordinates
+func get_tile_from_coors(coordinates: Vector2i) -> Node:
+	var tile_nodes = get_tree().get_nodes_in_group("tiles")
+
+	# Loop through tile nodes to find the one with the matching coordinates
+	for tile_node in tile_nodes:
+		if tile_node.position_tracker.get_grid_position() == coordinates:
+			print ([tile_node, "tile node"])
+			return tile_node
+
+	return null
  

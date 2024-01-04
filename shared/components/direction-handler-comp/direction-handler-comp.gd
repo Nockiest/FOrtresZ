@@ -8,8 +8,8 @@ var current_direction = starting_direction
 func _ready() -> void:
 	rotate_parent(starting_direction)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+# Called every frame. '_delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
 	# You might want to update the rotation dynamically during gameplay
 	# rotate_parent()
 	pass

@@ -24,7 +24,8 @@ func recieve_child_node(child_node:Node):
 	else:
 		Utils.print_spaced(["Cannot add child node: Type mismatch or maximum number of objects reached", get_children()], true)
 
-
+func is_full() -> bool:
+	return get_child_count() >= max_objects
 # Function to remove a child node
 func remove_child_node(child_node):
 	if child_node in get_children():

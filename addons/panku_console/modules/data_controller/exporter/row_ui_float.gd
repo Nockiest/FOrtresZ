@@ -25,7 +25,7 @@ func _ready():
 	)
 	var j_button:JoystickButton = joystick_button
 	j_button.value_changed.connect(
-		func(delta:Vector2): 
-			update_ui(get_ui_val() + delta.x)
+		func(_delta:Vector2): 
+			update_ui(get_ui_val() + _delta.x)
 			ui_val_changed.emit(get_ui_val())
 	)

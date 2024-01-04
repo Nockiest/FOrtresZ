@@ -25,7 +25,7 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			scrollbar.value += step
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	content.size = Vector2(clip_container.size.x, 0)
 	content.position = Vector2.ZERO
 	scrollbar.max_value = content.size.y

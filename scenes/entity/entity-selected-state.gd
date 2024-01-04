@@ -14,7 +14,7 @@ func exit():
 	owner.scale = owner.scale*0.9 
 	
  
-func update(delta):
+func update(_delta):
 	if (Input.is_action_just_pressed("left_mouse_click") ):
 		var positionTracker = Utils.find_ancestor_by_factor(3, owner).get_node("GridPositionTracker")
 		owner.movementComponent.process_movement(positionTracker.gridPosition, Globals.hovered_tile_coors)

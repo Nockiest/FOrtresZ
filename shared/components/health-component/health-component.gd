@@ -23,7 +23,7 @@ var current_shields: int = start_shields:
 		current_shields =clampi(new_shields ,0 , max_shields )
 		print("current shields are", current_shields)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. '_delta' is the elapsed time since the previous frame.
 func take_hit(dmg: int) -> void:
 	if current_shields > 0:
 		# If there are shields, subtract damage from shields

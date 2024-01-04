@@ -7,10 +7,10 @@ var state := "s1"
 var t := 0.0
 var d := 0.0
 
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	d = label.size.x - container.size.x
-	t -= delta
-	call(state, delta)
+	t -= _delta
+	call(state, _delta)
 
 func s1(_delta:float):
 	if d > 0:
@@ -25,7 +25,7 @@ func s2(_delta:float):
 		state = "s3"
 		label.position.x = 0
 
-func s3(delta:float):
+func s3(_delta:float):
 	if d <= 0:
 		state = "s1"
 		label.position.x = 0
@@ -34,7 +34,7 @@ func s3(delta:float):
 		t = 1.0
 		state = "s4"
 		return
-	label.position.x -= delta * 30.0
+	label.position.x -= _delta * 30.0
 	label.position.x = max(-d, label.position.x)
 
 func s4(_delta:float):

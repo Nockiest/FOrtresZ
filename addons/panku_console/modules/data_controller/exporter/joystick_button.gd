@@ -1,6 +1,6 @@
 extends Button
 
-signal value_changed(delta:Vector2)
+signal value_changed(_delta:Vector2)
 
 var prev_mouse_mode
 var prev_mouse_pos

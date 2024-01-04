@@ -4,7 +4,7 @@ extends Control
 
 var _module:PankuModule
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Engine.get_physics_frames() % 10 != 1:
 		return
 	if !is_visible_in_tree():

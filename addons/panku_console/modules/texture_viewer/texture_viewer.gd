@@ -5,7 +5,7 @@ extends Control
 var _module:PankuModule
 var expr:String
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Engine.get_physics_frames() % 10 != 1:
 		return
 	var result = _module.core.gd_exprenv.execute(expr)["result"]

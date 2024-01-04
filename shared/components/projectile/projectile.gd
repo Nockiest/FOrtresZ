@@ -15,10 +15,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
+ 
 func move_to_target():
 	var moving_through_tiles = GridUtils.calculate_tiles_in_path(Vector2i(5,5),  $"direction-handler-comp".current_direction, speed_per_turn, target_location)
 	print_debug(moving_through_tiles)

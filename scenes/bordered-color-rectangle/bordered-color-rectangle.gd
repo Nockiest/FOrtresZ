@@ -1,7 +1,7 @@
 class_name BorderedRectangle
 extends Control
 
-@export var border_width: float = 2
+@export var border_width: int = 2
 @export var rectangle_size: Vector2i = Globals.tile_size
 var border_visible: bool = true  # Track the visibility of the border
 

@@ -20,10 +20,10 @@ func load_modules():
 		module._init_module()
 		#print("[info] %s module loaded!" % module.get_module_name())
 
-func update_modules(delta:float):
+func update_modules(_delta:float):
 	for _m in _modules:
 		var module:PankuModule = _m
-		module.update_module(delta)
+		module.update_module(_delta)
 
 func get_module(module_name:String):
 	return _modules_table[module_name]
