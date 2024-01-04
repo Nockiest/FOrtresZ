@@ -20,8 +20,11 @@ var remaining_ammo:int = ammo_capacity:
 			emit_signal("ammo_ran_out")
 # Called when the node enters the scene tree for the first time.
 
-func attack():
-	remaining_ammo -= ammo_per_volley
+func attack() -> void:
+	if remaining_ammo< ammo_per_volley:
+		printerr("ran out of bullets")
+		return
+	remaining_ammo -= ammo_per_volley # maybe I could move the logic above to the for loop, that could be interesting
 	for i in range(ammo_per_volley):
 		spawn_bullet()
 		
