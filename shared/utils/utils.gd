@@ -203,3 +203,31 @@ func generate_bezier_curve(start:Vector2, end:Vector2, control_point:Vector2,  n
 			segments.append([ round(points[-1]), round(points[-2]) ])
 		t += 1.0/num_segments
 	return segments
+	
+func find_ancestor_by_factor(x: int, node: Node) -> Node:
+	var current_node = node
+
+	# Iterate x times to find the ancestor
+	for i in range(x):
+		# Check if the current node has a parent
+		if current_node.get_parent() != null:
+			current_node = current_node.get_parent()
+		else:
+			# If no parent, break out of the loop
+			break
+
+	return current_node
+# sadly not working
+#func find_ancestor_by_class(name_of_class: String, node: Node) -> Node:
+#	var current_node = node
+#
+#	# Check if the current node has the specified class name
+#	if current_node.get_class() == name_of_class:
+#		return current_node
+#
+#	# If not, recursively check the parent's ancestors
+#	if current_node.get_parent() != null:
+#		return find_ancestor_by_class(name_of_class, current_node.get_parent())
+#
+#	# If no parent or matching class name found, return null
+#	return null

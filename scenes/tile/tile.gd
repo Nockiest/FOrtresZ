@@ -8,7 +8,7 @@ func _on_mouse_entered() -> void:
 	Globals.hovered_tile_coors = $GridPositionTracker.get_grid_position()
 
 func _ready() -> void:
-	resize(Globals.tile_size)
+	resize(Globals.tile_size-  Globals.grid_gap)
 	add_entity_to_tile( )
 #
 func _process(_event) -> void:
@@ -25,6 +25,8 @@ func resize(size:Vector2i):
 	$CollisionShape2D.shape = shape
 	var center = Utils.get_collision_shape_center(self)
 	$ObjectContainerManager.position = size / Vector2i(2,2) 
+	$CollisionShape2D.position = size / Vector2i(2,2) 
+	print($ObjectContainerManager.position)
 
 
 func add_entity_to_tile( ):

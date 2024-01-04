@@ -9,13 +9,21 @@ entity_container = NodePath("EntityContainer")
 structure_container = NodePath("StructureContainer")
 projectile_container = NodePath("ProjectileContainer")
 
-[node name="EntityContainer" type="Node" parent="."]
+[node name="EntityContainer" type="Node2D" parent="."]
 script = ExtResource("1_empy1")
 
-[node name="StructureContainer" type="Node" parent="."]
+[node name="StructureContainer" type="Node2D" parent="."]
 script = ExtResource("1_empy1")
 allowed_object_type = "Structure"
 
-[node name="ProjectileContainer" type="Node" parent="."]
+[node name="ProjectileContainer" type="Node2D" parent="."]
 script = ExtResource("1_empy1")
 allowed_object_type = "Projectile"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0.447059, 0.0941176, 0, 1)

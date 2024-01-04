@@ -26,22 +26,11 @@ func validate_move(from: Vector2i, to: Vector2i, validation_input_data: Dictiona
 			return true
 
 	# Translate the movement vector to a direction string
-	var direction = get_movement_direction(movement_vector)
+	var direction = GridUtils.get_movement_direction(to , from)
 
 	# Check if the direction is valid
 	return direction in valid_directions
 
 # Function to get the movement direction string
-func get_movement_direction(movement_vector: Vector2i) -> String:
-	var direction = ""
-	if movement_vector.x < 0:
-		direction += "left"
-	elif movement_vector.x > 0:
-		direction += "right"
-
-	if movement_vector.y < 0:
-		direction += "up"
-	elif movement_vector.y > 0:
-		direction += "down"
-
-	return direction
+# Function to get the movement direction string
+ 

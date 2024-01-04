@@ -5,25 +5,25 @@ extends State
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 #	owner.get_node("Sprite2D").opacity = 0.5
-	owner.scale = Vector2(1.1, 1.1) 
+	owner.scale = owner.scale*1.1 
 	Globals.selected_entity = owner
 	
 func exit():
  
 	Globals.selected_entity = null
-	owner.scale = Vector2(1.0, 1.0) 
+	owner.scale = owner.scale*0.9 
 	
-# there is a potential for a bug causeed by using the selected tile and not the tile the entity stands on
+ 
 func update(delta):
 	if (Input.is_action_just_pressed("left_mouse_click") ):
-#		print_debug(Globals.selected_tile_coors, Globals.hovered_tile_coors) 
-		$"../../MovementComponent".process_movement(owner.get_parent().get_parent().get_node("GridPositionTracker").gridPosition, Globals.hovered_tile_coors)
+		var positionTracker = Utils.find_ancestor_by_factor(3, owner).get_node("GridPositionTracker")
+		owner.movementComponent.process_movement(positionTracker.gridPosition, Globals.hovered_tile_coors)
 		state_machine.transition_to("Idle")
 	elif   Globals.selected_entity != owner:
 		state_machine.transition_to("Idle")
 	elif Input.is_action_just_pressed("right_mouse_click") :
 #		healthComponent.take_hit(1)
-		$"../../Weapon".attack()
+		owner.weaponComponent.attack()
 	
 
 

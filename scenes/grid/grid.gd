@@ -2,23 +2,23 @@ class_name Grid
 extends Node2D
 
  
-var gap_size = 2 # Gap size between rows
 var grid = []
 
 func _ready():
 	initialize_grid()
  
 func initialize_grid():
-	for x in range(Globals.grid_size.x):
+	for y in range(Globals.grid_size.x):
 		var row = []
-		for y in range( Globals.grid_size.y):
+		for x in range( Globals.grid_size.y):
 			var tile = create_tile(x, y)
 			row.append(tile)
 		grid.append(row)
 
 func create_tile(x, y):
+	print(x,y)
 	var tile = Globals.tile_scene.instantiate() as Area2D
-	tile.position = Vector2(x * Globals.tile_size.x  + (x * gap_size), (y * Globals.tile_size.y) + (y * gap_size))
+	tile.position = Vector2(x * Globals.tile_size.x  + (x * Globals.grid_gap.x), (y * Globals.tile_size.y) + (y *  Globals.grid_gap.y))
 	tile.get_node('GridPositionTracker').set_grid_position(Vector2i(x, y))
  
 	add_child(tile)
@@ -45,7 +45,7 @@ func move_entity_to_validated_position(from_container_coors, to_container_coors:
 		if tile.position_tracker.get_grid_position() == to_container_coors:
 #			print("found the correct tile ",entity.owner, entity.get_parent(), entity)
 			entity.get_parent().remove_child_node(entity)
-			tile.get_node("EntityContainer").recieve_child_node(entity)
+			tile.get_node("ObjectContainerManager").add_child_node(entity)
  
 #			entity.owner.remove_child_node(entity)
 		

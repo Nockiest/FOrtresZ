@@ -1,10 +1,10 @@
 class_name MomvementComponent
 extends Node
 
-@export var valid_directions = ['left', 'right', 'down', 'up', 'up-left', 'up-right', 'down-left', 'down-right']
+@export var valid_directions: Array[DirectionList.Direction] # ['left', 'right', 'down', 'up', 'up-left', 'up-right', 'down-left', 'down-right']
 @export var valid_movement_patterns: Array[Vector2i]  # Define the array with valid vectors
 @export var valid_max_movement_range: float = 1  # Define the maximum movement range
-
+signal moved(from, to)
 func process_movement(from, to):
  
 	
@@ -16,8 +16,8 @@ func process_movement(from, to):
 	print("Received movement to", from, to, $MovementValidator.validate_move(from, to, validation_input_data))
 	if $MovementValidator.validate_move(from, to, validation_input_data):
 		print("Move would be valid")
-		owner.get_parent().get_parent().get_parent().move_entity_to_validated_position(from, to, owner)
-
+		emit_signal("moved", from,to)
+		Utils.find_ancestor_by_factor(4,owner).move_entity_to_validated_position(from, to, owner)
 #func move_entity_to_new_cell_container(new_entity_container_coors: Vector2i):
 #	# this function processes already validated moves
 #	if new_entity_container_coors == owner.MovementComponent:
